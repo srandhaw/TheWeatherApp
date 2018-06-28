@@ -86,7 +86,7 @@
                                 <rect key="frame" x="0.0" y="300" width="414" height="436"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WeatherCell" rowHeight="80" id="aas-bD-oXy">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WeatherCell" rowHeight="80" id="aas-bD-oXy" customClass="WeatherCell" customModule="TheWeatherApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aas-bD-oXy" id="a1b-gv-3sp">
@@ -153,6 +153,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="day" destination="eVw-dc-7zY" id="38K-Me-8wF"/>
+                                            <outlet property="sideImg" destination="yWq-fZ-YNT" id="2MY-ff-pgo"/>
+                                            <outlet property="tempHigh" destination="a4r-lH-pcc" id="dA7-Wv-JYd"/>
+                                            <outlet property="tempLow" destination="x8w-6T-aRB" id="bXw-f9-GAg"/>
+                                            <outlet property="weatherType" destination="a4r-lH-pcc" id="JmI-U7-vE4"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

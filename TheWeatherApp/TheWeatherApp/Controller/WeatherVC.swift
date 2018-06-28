@@ -23,6 +23,17 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        MainViewData.instance.downloadData { (success) in
+            if(success){
+                self.dateLabel.text = MainViewData.instance._date
+                self.currentTempLabel.text = "\(MainViewData.instance.currentTemp!)"
+                self.locationLabel.text = MainViewData.instance.cityName
+                self.currentWeatherType.text = MainViewData.instance.weatherType
+                self.currentWeatherImage.image = UIImage(named: MainViewData.instance.weatherType!)
+                
+            }
+        }
        
     }
     
@@ -41,7 +52,10 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as? WeatherCell{
+            
+            
+        }
         return UITableViewCell()
     }
 
