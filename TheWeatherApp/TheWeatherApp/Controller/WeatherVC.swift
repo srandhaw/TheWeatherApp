@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     //Outlets
     @IBOutlet weak var dateLabel: UILabel!
@@ -18,9 +19,15 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var currentWeatherType: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -34,6 +41,12 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
             }
         }
+        
+        DataService.instance.downloadData { (success) in
+            if(success){
+                self.tableView.reloadData()
+            }
+        }
        
     }
     
@@ -44,7 +57,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return DataService.instance.weatherData.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -53,10 +66,14 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as? WeatherCell{
-            
+           let data = DataService.instance.weatherData[indexPath.row]
+            cell.updateView(weatherData: data)
+            return cell
             
         }
+        //else{
         return UITableViewCell()
+        //}
     }
 
     

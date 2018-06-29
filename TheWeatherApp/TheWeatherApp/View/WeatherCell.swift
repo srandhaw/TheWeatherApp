@@ -30,8 +30,8 @@ class WeatherCell: UITableViewCell {
     func updateView(weatherData: WeatherData){
         self.day.text = weatherData.day
         self.weatherType.text = weatherData.weatherType
-        self.tempHigh.text = weatherData.tempHigh
-        self.tempLow.text = weatherData.tempLow
+        self.tempHigh.text = "\(weatherData.tempHigh!)"
+        self.tempLow.text = "\(weatherData.tempLow!)"
         self.sideImg.image = UIImage(named: weatherData.sideImg!)
 
     }

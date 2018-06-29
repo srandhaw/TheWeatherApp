@@ -34,16 +34,18 @@ class MainViewData{
         
         Alamofire.request(url!, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             if(response.result.error == nil){
+                
                  guard let data = response.data else {return}
                 do{
                     let json = try JSON(data: data)
+                    //print(json)
                     self.cityName  =  json["name"].stringValue
                    self.weatherType = json["weather"][0]["main"].stringValue
-                    self.currentTemp = (json["main"]["temp"].doubleValue - 273.15)
+                    self.currentTemp = round(json["main"]["temp"].doubleValue - 273.15)
                    
                     
                    
-                }catch{print("\n\nJSON - problem in login user in AuthService\n\n")}
+                }catch{}
                 
                 completion(true)
             }

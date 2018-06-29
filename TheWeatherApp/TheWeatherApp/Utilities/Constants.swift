@@ -11,7 +11,14 @@ import Foundation
 let BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
 let LAT = "lat="
 let LON  = "&lon="
+let CNT = "&cnt=10"
 let APP_ID = "&appid="
-let API_KEY = "cbb65e3ffbec5c66d3da2cb92cc12755"
-let FINAL_URL  = "\(BASE_URL)\(LAT)39\(LON)-86\(APP_ID)\(API_KEY)"
+let API_KEY = "42a1771a0b787bf12e734ada0cfc80cb"
+let FINAL_URL  = "\(BASE_URL)\(LAT)43.6532\(LON)-79.3832\(APP_ID)\(API_KEY)"
 typealias CompletionHandler = (_ Success: Bool)->()
+
+
+
+let DAILY_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast/daily?"
+
+let DAILY_FINAL_URL = "\(DAILY_BASE_URL)\(LAT)43.6532\(LON)-79.3832\(CNT)\(APP_ID)\(API_KEY)"
