@@ -18,6 +18,7 @@
 		C757264F20DD1B9C008BBFC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C757264D20DD1B9C008BBFC9 /* Main.storyboard */; };
 		C757265120DD1B9C008BBFC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C757265020DD1B9C008BBFC9 /* Assets.xcassets */; };
 		C757265420DD1B9C008BBFC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C757265220DD1B9C008BBFC9 /* LaunchScreen.storyboard */; };
+		C785ACC620E5CAF5001C629C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785ACC520E5CAF5001C629C /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		C757265020DD1B9C008BBFC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C757265320DD1B9C008BBFC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C757265520DD1B9C008BBFC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C785ACC520E5CAF5001C629C /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			children = (
 				C740DDF120E2689200A5DE9F /* WeatherData.swift */,
 				C740DDF920E27D0900A5DE9F /* MainViewData.swift */,
+				C785ACC520E5CAF5001C629C /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			files = (
 				C757264C20DD1B9C008BBFC9 /* WeatherVC.swift in Sources */,
 				C757264A20DD1B9C008BBFC9 /* AppDelegate.swift in Sources */,
+				C785ACC620E5CAF5001C629C /* Location.swift in Sources */,
 				C740DDF220E2689200A5DE9F /* WeatherData.swift in Sources */,
 				C740DDF020E2685B00A5DE9F /* WeatherCell.swift in Sources */,
 				C740DDF520E26D1700A5DE9F /* DataService.swift in Sources */,

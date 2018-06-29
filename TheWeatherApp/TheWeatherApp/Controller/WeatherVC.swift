@@ -25,11 +25,18 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
+    
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
+       
+        locationAuthStatus()
         
         MainViewData.instance.downloadData { (success) in
             if(success){
@@ -47,7 +54,28 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
                 self.tableView.reloadData()
             }
         }
+        
        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        locationAuthStatus()
+        
+    }
+    
+    func locationAuthStatus(){
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse){
+            currentLocation = locationManager.location
+            Location.instance.longitude = currentLocation.coordinate.longitude
+            Location.instance.latitude = currentLocation.coordinate.latitude
+            
+            print(Location.instance.latitude, Location.instance.longitude)
+          
+        }else{
+            locationManager.requestWhenInUseAuthorization()
+            locationAuthStatus()
+        }
     }
     
     //tableView functions
