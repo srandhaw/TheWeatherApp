@@ -1,3 +1,3 @@
 # TheWeatherApp
 
-A simple weather appliction for iOS
+A simple weather application for iOS
