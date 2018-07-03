@@ -50,7 +50,7 @@ class MainViewData{
                 completion(true)
             }
             else{
-            debugPrint(response.result.error)
+                debugPrint(response.result.error!)
             completion(false)
         }
         }

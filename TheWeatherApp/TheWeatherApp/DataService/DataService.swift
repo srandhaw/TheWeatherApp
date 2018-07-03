@@ -19,6 +19,7 @@ class DataService{
     func downloadData(completion: @escaping CompletionHandler){
         
         let url = URL(string: DAILY_FINAL_URL)
+       
         
         Alamofire.request(url!, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             

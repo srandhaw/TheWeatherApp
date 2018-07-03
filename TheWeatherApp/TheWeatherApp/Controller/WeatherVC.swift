@@ -11,6 +11,13 @@ import CoreLocation
 
 class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
+    
+    
+    static var instance = WeatherVC()
+    
+    //Variables
+    var coordinatesFound = false
+    
     //Outlets
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
@@ -35,8 +42,35 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         tableView.delegate = self
         tableView.dataSource = self
         
+        
        
+       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         locationAuthStatus()
+        }
+        
+    
+    
+    func locationAuthStatus(){
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse){
+            currentLocation = locationManager.location
+            
+            Location.instance.longitude = currentLocation.coordinate.longitude
+            Location.instance.latitude = currentLocation.coordinate.latitude
+            
+            print(Location.instance.latitude, Location.instance.longitude)
+            
+            updateUI(lat: Location.instance.latitude, lon: Location.instance.longitude)
+        }else{
+            locationManager.requestWhenInUseAuthorization()
+            locationAuthStatus()
+}
+}
+    
+    func updateUI(lat: Double,lon: Double){
         
         MainViewData.instance.downloadData { (success) in
             if(success){
@@ -45,6 +79,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
                 self.locationLabel.text = MainViewData.instance.cityName
                 self.currentWeatherType.text = MainViewData.instance.weatherType
                 self.currentWeatherImage.image = UIImage(named: MainViewData.instance.weatherType!)
+                
                 
             }
         }
@@ -55,27 +90,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
             }
         }
         
-       
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        locationAuthStatus()
         
-    }
-    
-    func locationAuthStatus(){
-        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse){
-            currentLocation = locationManager.location
-            Location.instance.longitude = currentLocation.coordinate.longitude
-            Location.instance.latitude = currentLocation.coordinate.latitude
-            
-            print(Location.instance.latitude, Location.instance.longitude)
-          
-        }else{
-            locationManager.requestWhenInUseAuthorization()
-            locationAuthStatus()
-        }
     }
     
     //tableView functions
@@ -107,4 +122,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
     
 
 }
+
+
+
+
 
